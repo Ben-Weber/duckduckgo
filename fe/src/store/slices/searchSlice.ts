@@ -50,7 +50,7 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     addSearchQuery: (state, action: PayloadAction<string>) => {
-      state.pastQueries.push(action.payload);
+      state.pastQueries.unshift(action.payload);
     },
   },
   extraReducers: (builder) => {

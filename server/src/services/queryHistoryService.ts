@@ -5,7 +5,7 @@ const historyFilePath = path.join(__dirname, 'queryHistory.json');
 
 export const saveQuery = async (query: string) => {
   const queries = await loadQueries();
-  queries.push(query);
+  queries.unshift(query);
   return new Promise<void>((resolve, reject) => {
     fs.writeFile(historyFilePath, JSON.stringify(queries, null, 2), (err) => {
       if (err) reject(err);
