@@ -41,10 +41,6 @@ const Dashboard: React.FC = () => {
     setCurrentPage(1);
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
   const paginatedResults = searchResults.slice(
     (currentPage - 1) * resultsPerPage,
     currentPage * resultsPerPage
@@ -68,7 +64,7 @@ const Dashboard: React.FC = () => {
           totalResults={searchResults.length}
           resultsPerPage={resultsPerPage}
           currentPage={currentPage}
-          onPageChange={handlePageChange}
+          onPageChange={setCurrentPage}
         />
       </Box>
     </Container>
