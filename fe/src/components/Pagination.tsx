@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const totalPages = Math.ceil(totalResults / resultsPerPage);
 
   return (
-    <Box display="flex" justifyContent="center" mt={2}>
+    <Box display="flex" justifyContent="flex-end" mt={2}>
       {Array.from({ length: totalPages }, (_, i) => (
         <Button
           key={i}

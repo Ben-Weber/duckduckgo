@@ -6,7 +6,7 @@ import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
 import Pagination from '../components/Pagination';
-import { Container, Box, Grid } from '@mui/material';
+import { Container, Box, Grid, Paper } from '@mui/material';
 import { TODO } from '../types/global';
 import useDebounce from '../hooks/useDebounce';
 
@@ -17,9 +17,9 @@ const Dashboard: React.FC = () => {
 
   const [query, setQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const resultsPerPage = 10;
+  const resultsPerPage = 5;
 
-  const debouncedQuery = useDebounce(query, 500);
+  const debouncedQuery = useDebounce(query, 300);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -28,7 +28,6 @@ const Dashboard: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      console.log('query', query);
       dispatch(addSearchQuery(query));
       dispatch(fetchSearchResults(query) as TODO);
       setCurrentPage(1);
@@ -53,23 +52,25 @@ const Dashboard: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container maxWidth="md">
       <Box my={4}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3} style={{ minHeight: '200px' }}>
+        <Paper sx={{ p: 2 }}>
+          <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
+        </Paper>
+        <Grid container spacing={10}>
+          <Grid item xs={12} md={3} sx={{ mt: '50px' }}>
             <PastQueries pastQueries={pastQueries} onPastQueryClick={handlePastQueryClick} />
           </Grid>
-          <Grid item xs={12} md={9} style={{ minHeight: '400px' }}>
-            <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
+          <Grid item xs={12} md={9} sx={{ mt: '50px' }}>
             <SearchResults results={paginatedResults} query={debouncedQuery} loading={false} />
-            <Pagination
-              totalResults={searchResults.length}
-              resultsPerPage={resultsPerPage}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
           </Grid>
         </Grid>
+        <Pagination
+          totalResults={searchResults.length}
+          resultsPerPage={resultsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </Box>
     </Container>
   );
