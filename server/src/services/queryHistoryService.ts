@@ -18,6 +18,7 @@ export const loadQueries = (): Promise<string[]> => {
   return new Promise((resolve, reject) => {
     fs.readFile(historyFilePath, 'utf8', (err, data) => {
       if (err) {
+        console.error('Error reading file:', err);
         if (err.code === 'ENOENT') resolve([]); // File not found, return empty array
         else reject(err);
       } else {

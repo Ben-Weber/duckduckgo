@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { fetchSearchResults, addSearchQuery } from '../store/slices/searchSlice';
+import React, { useEffect, useState } from 'react';
+import { fetchSearchResults, addSearchQuery, fetchPastQueries } from '../store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
@@ -19,6 +19,10 @@ const Dashboard: React.FC = () => {
   const resultsPerPage = 5;
 
   const debouncedQuery = useDebounce(query, 300);
+
+  useEffect(() => {
+    dispatch(fetchPastQueries());
+  }, [dispatch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);

@@ -23,6 +23,28 @@ export const fetchSearchResults = createAsyncThunk(
   }
 );
 
+export const fetchPastQueries = createAsyncThunk(
+  'search/fetchPastQueries',
+  async () => {
+    try {
+      const response = await fetch('/api/history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching past results:', error);
+      throw error;
+    }
+  }
+);
+
 const searchSlice = createSlice({
   name: 'search',
   initialState,
@@ -34,6 +56,10 @@ const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.results = action.payload;
+    });
+    builder.addCase(fetchPastQueries.fulfilled, (state, action) => {
+      console.log('state, action', state, action);
+      state.pastQueries = action.payload;
     });
   },
 });
