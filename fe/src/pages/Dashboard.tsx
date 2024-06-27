@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchSearchResults, addSearchQuery } from '../slices/searchSlice';
-import { RootState } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
@@ -11,12 +10,12 @@ import { TODO } from '../types/global';
 import useDebounce from '../hooks/useDebounce';
 
 const Dashboard: React.FC = () => {
-  const dispatch = useDispatch();
-  const searchResults = useSelector((state: RootState) => state.search.results);
-  const pastQueries = useSelector((state: RootState) => state.search.pastQueries);
+  const dispatch = useAppDispatch();
+  const searchResults = useAppSelector(state => state.search.results);
+  const pastQueries = useAppSelector(state => state.search.pastQueries);
 
-  const [query, setQuery] = useState<string>('');
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [query, setQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 5;
 
   const debouncedQuery = useDebounce(query, 300);
@@ -57,11 +56,11 @@ const Dashboard: React.FC = () => {
         <Paper sx={{ p: 2 }}>
           <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
         </Paper>
-        <Grid container spacing={10}>
-          <Grid item xs={12} md={3} sx={{ mt: '50px' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={3}>
             <PastQueries pastQueries={pastQueries} onPastQueryClick={handlePastQueryClick} />
           </Grid>
-          <Grid item xs={12} md={9} sx={{ mt: '50px' }}>
+          <Grid item xs={9}>
             <SearchResults results={paginatedResults} query={debouncedQuery} loading={false} />
           </Grid>
         </Grid>
