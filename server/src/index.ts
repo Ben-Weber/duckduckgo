@@ -3,7 +3,7 @@ import searchRoutes from './routes/searchRoutes';
 import historyRoutes from './routes/historyRoutes';
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.use(express.json());
 
