@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 interface SearchState {
   results: Array<{ title: string; description: string; url: string }>;
@@ -14,11 +13,13 @@ const initialState: SearchState = {
 export const fetchSearchResults = createAsyncThunk(
   'search/fetchSearchResults',
   async (query: string) => {
-    const response = await axios.get('http://api.duckduckgo.com', {
-      params: { q: query, format: 'json' },
-    });
-    console.log('response', response);
-    return response.data;
+    const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+    const data = await response.json();
+    const results = data.map((item: any) => ({
+      title: item.title,
+      url: item.url,
+    }));
+    return results;
   }
 );
 
