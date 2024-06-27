@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { fetchSearchResults, addSearchQuery } from '../slices/searchSlice';
-import { useAppDispatch, useAppSelector } from '../store';
+import { fetchSearchResults, addSearchQuery } from '../store/slices/searchSlice';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
