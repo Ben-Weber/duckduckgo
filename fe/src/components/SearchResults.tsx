@@ -13,9 +13,14 @@ interface SearchResultsProps {
   loading: boolean;
 }
 
+const escapeRegExp = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
 const highlightTerm = (text: string, term: string) => {
   if (!term || !text) return text;
-  const parts = text.split(new RegExp(`(${term})`, 'gi'));
+  const escapedTerm = escapeRegExp(term);
+  const parts = text.split(new RegExp(`(${escapedTerm})`, 'gi'));
   return (
     <span>
       {parts.map((part, i) =>
@@ -48,7 +53,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results, query, loading }
           </Link>
           <Typography variant="body2">{highlightTerm(result.description, query)}</Typography>
           {countOccurrences(result.title, query) > 0 && (
-            <Typography variant="caption">{`${query} appears ${countOccurrences(result.title, query)} times`}</Typography>
+            <Typography variant="caption">{`"${query}" appears ${countOccurrences(result.title, query)} times`}</Typography>
           )}
         </Paper>
       ))
