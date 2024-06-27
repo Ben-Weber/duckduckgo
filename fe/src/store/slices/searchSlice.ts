@@ -58,7 +58,6 @@ const searchSlice = createSlice({
       state.results = action.payload;
     });
     builder.addCase(fetchPastQueries.fulfilled, (state, action) => {
-      console.log('state, action', state, action);
       state.pastQueries = action.payload;
     });
   },
