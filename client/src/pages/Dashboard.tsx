@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { fetchSearchResults, addSearchQuery, fetchPastQueries } from '../store/slices/searchSlice';
+import { addSearchQuery } from '../store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
+import { fetchSearchResults, fetchPastQueries } from '../store/actions/searchActions';
 import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
