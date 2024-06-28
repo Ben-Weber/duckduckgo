@@ -22,6 +22,8 @@ const Dashboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 5;
 
+  const paginatedResults = useAppSelector(state => selectPaginatedResults(state, currentPage, resultsPerPage));
+
   const debouncedQuery = useDebounce(query, 300);
 
   useEffect(() => {
