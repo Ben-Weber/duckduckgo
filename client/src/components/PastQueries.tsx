@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Typography, Box } from '@mui/material';
+import { List, ListItemButton, ListItemText, Typography, Box } from '@mui/material';
 import { PastQueriesProps } from '../types/types';
 
 const PastQueries: React.FC<PastQueriesProps> = ({ pastQueries, onPastQueryClick }) => {
@@ -9,9 +9,9 @@ const PastQueries: React.FC<PastQueriesProps> = ({ pastQueries, onPastQueryClick
       <Box sx={{ maxHeight: 400, overflowY: 'auto' }}>
         <List>
           {pastQueries.map((pastQuery, index) => (
-            <ListItem button key={index} onClick={() => onPastQueryClick(pastQuery)}>
+            <ListItemButton key={index} onClick={() => onPastQueryClick(pastQuery)}>
               <ListItemText primary={pastQuery} />
-            </ListItem>
+            </ListItemButton>
           ))}
         </List>
       </Box>
