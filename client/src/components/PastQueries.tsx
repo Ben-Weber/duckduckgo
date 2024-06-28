@@ -6,7 +6,7 @@ const PastQueries: React.FC<PastQueriesProps> = ({ pastQueries, onPastQueryClick
   return (
     <Box mb={2}>
       <Typography variant="h6">Past Queries</Typography>
-      <Box sx={{ maxHeight: 400, overflowY: 'auto' }}>
+      <Box sx={{ maxHeight: 300, overflowY: 'auto' }}>
         <List>
           {pastQueries.map((pastQuery, index) => (
             <ListItemButton key={index} onClick={() => onPastQueryClick(pastQuery)}>

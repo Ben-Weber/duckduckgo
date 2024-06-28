@@ -53,34 +53,42 @@ const Dashboard: React.FC = () => {
 
 
   return (
-    <Container maxWidth="md">
-      <Box my={4}>
-        <Typography variant="h4" align="center" gutterBottom>
+    <Container maxWidth="lg">
+        <Typography mt={6} variant="h4" align="center" gutterBottom>
           The search engine you've been looking for
         </Typography>
-        <Typography variant="subtitle1" align="center" gutterBottom>
+        <Typography variant="subtitle1" align="center">
           All-in-one lightning-fast setup and unprecedented control.
         </Typography>
-        <Paper sx={{ p: 2, mb: 4 }}>
-          <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
-        </Paper>
+    <Box mt={6} sx={{ 
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <Container maxWidth="lg">
         <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <Paper sx={{ p: 2 }}>
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ p: 2, height: '100%' }}>
               <PastQueries pastQueries={pastQueries} onPastQueryClick={handlePastQueryClick} />
             </Paper>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={12} md={9}>
+            <Paper sx={{ p: 2, mb: 3, }}>
+              <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
+            </Paper>
             <SearchResults results={paginatedResults} query={debouncedQuery} loading={false} />
+            <Box mt={3}>
+              <Pagination
+                totalResults={searchResults.length}
+                resultsPerPage={resultsPerPage}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+              />
+            </Box>
           </Grid>
         </Grid>
-        <Pagination
-          totalResults={searchResults.length}
-          resultsPerPage={resultsPerPage}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-        />
-      </Box>
+      </Container>
+    </Box>
     </Container>
   );
 };
