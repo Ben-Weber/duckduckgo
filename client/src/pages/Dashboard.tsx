@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { addSearchQuery } from '../store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { fetchSearchResults, fetchPastQueries } from '../store/actions/searchActions';
@@ -9,11 +9,14 @@ import Pagination from '../components/Pagination';
 import { Container, Box, Grid, Paper, Typography } from '@mui/material';
 import { TODO } from '../types/types';
 import useDebounce from '../hooks/useDebounce';
+import { selectPaginatedResults } from '../store/selectors/index';
 
 const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
   const searchResults = useAppSelector(state => state.search.searchResults);
   const pastQueries = useAppSelector(state => state.search.pastQueries);
+
+  const paginatedResults = useAppSelector(state => selectPaginatedResults(state, currentPage, resultsPerPage));
 
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,13 +49,6 @@ const Dashboard: React.FC = () => {
     setCurrentPage(1);
   }, [dispatch]);
 
-  const paginatedResults = useMemo(() => 
-    searchResults.slice(
-      (currentPage - 1) * resultsPerPage,
-      currentPage * resultsPerPage
-    ), 
-    [searchResults, currentPage, resultsPerPage]
-  );
 
   return (
     <Container maxWidth="md">
