@@ -5,12 +5,11 @@ import { saveQuery } from '../services/queryHistoryService';
 const router = Router();
 
 router.get('/', async (req: Request, res: Response) => {
-  const query = req.query.q as string | undefined;
-  if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
-  }
-
   try {
+    const query = req.query.q as string | undefined;
+    if (!query) {
+      return res.status(400).json({ error: 'Query parameter is required' });
+    }
     const results = await searchDuckDuckGo(query);
     await saveQuery(query);
     res.json(results);
