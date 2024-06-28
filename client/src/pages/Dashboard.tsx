@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { fetchSearchResults, addSearchQuery, fetchPastQueries } from '../store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import SearchForm from '../components/SearchForm';
@@ -45,9 +45,12 @@ const Dashboard: React.FC = () => {
     setCurrentPage(1);
   };
 
-  const paginatedResults = searchResults.slice(
-    (currentPage - 1) * resultsPerPage,
-    currentPage * resultsPerPage
+  const paginatedResults = useMemo(() => 
+    searchResults.slice(
+      (currentPage - 1) * resultsPerPage,
+      currentPage * resultsPerPage
+    ), 
+    [searchResults, currentPage, resultsPerPage]
   );
 
   return (
