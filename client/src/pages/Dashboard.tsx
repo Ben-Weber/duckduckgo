@@ -12,7 +12,7 @@ import useDebounce from '../hooks/useDebounce';
 
 const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
-  const searchResults = useAppSelector(state => state.search.results);
+  const searchResults = useAppSelector(state => state.search.searchResults);
   const pastQueries = useAppSelector(state => state.search.pastQueries);
 
   const [query, setQuery] = useState('');

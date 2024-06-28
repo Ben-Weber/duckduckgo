@@ -26,8 +26,7 @@ export const fetchPastQueries = createAsyncThunk(
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
-      return data;
+      return response.json();
     } catch (error) {
       console.error('Error fetching past results:', error);
       throw error;

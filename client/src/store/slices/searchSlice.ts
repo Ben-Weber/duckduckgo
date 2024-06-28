@@ -3,7 +3,7 @@ import { SearchState } from '../../types/types';
 import { fetchSearchResults, fetchPastQueries } from '../actions/searchActions';
 
 const initialState: SearchState = {
-  results: [],
+  searchResults: [],
   pastQueries: [],
 };
 
@@ -17,7 +17,7 @@ const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
-      state.results = action.payload;
+      state.searchResults = action.payload;
     });
     builder.addCase(fetchPastQueries.fulfilled, (state, action) => {
       state.pastQueries = action.payload;

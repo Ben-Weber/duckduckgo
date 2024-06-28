@@ -33,7 +33,7 @@ export type SearchFormProps = {
 };
 
 export type SearchState = {
- results: Array<{ title: string; url: string }>;
+ searchResults: Array<{ title: string; url: string }>;
  pastQueries: string[];
 };
 
