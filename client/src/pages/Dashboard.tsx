@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { fetchSearchResults, addSearchQuery, fetchPastQueries } from '../store/slices/searchSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import SearchForm from '../components/SearchForm';
@@ -24,11 +24,11 @@ const Dashboard: React.FC = () => {
     dispatch(fetchPastQueries());
   }, [dispatch]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  };
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
       dispatch(addSearchQuery(query));
@@ -37,13 +37,13 @@ const Dashboard: React.FC = () => {
     } else {
       console.log('No query to submit');
     }
-  };
+  }, [query, dispatch]);
 
-  const handlePastQueryClick = (pastQuery: string) => {
+  const handlePastQueryClick = useCallback((pastQuery: string) => {
     setQuery(pastQuery);
     dispatch(fetchSearchResults(pastQuery) as TODO);
     setCurrentPage(1);
-  };
+  }, [dispatch]);
 
   const paginatedResults = useMemo(() => 
     searchResults.slice(
