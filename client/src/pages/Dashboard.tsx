@@ -5,7 +5,7 @@ import SearchForm from '../components/SearchForm';
 import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
 import Pagination from '../components/Pagination';
-import { Container, Box, Grid, Paper } from '@mui/material';
+import { Container, Box, Grid, Paper, Typography } from '@mui/material';
 import { TODO } from '../types/global';
 import useDebounce from '../hooks/useDebounce';
 
@@ -53,12 +53,20 @@ const Dashboard: React.FC = () => {
   return (
     <Container maxWidth="md">
       <Box my={4}>
-        <Paper sx={{ p: 2 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          The search engine you've been looking for
+        </Typography>
+        <Typography variant="subtitle1" align="center" gutterBottom>
+          All-in-one lightning-fast setup and unprecedented control.
+        </Typography>
+        <Paper sx={{ p: 2, mb: 4 }}>
           <SearchForm query={query} onInputChange={handleInputChange} onSubmit={handleSubmit} />
         </Paper>
         <Grid container spacing={3}>
           <Grid item xs={3}>
-            <PastQueries pastQueries={pastQueries} onPastQueryClick={handlePastQueryClick} />
+            <Paper sx={{ p: 2 }}>
+              <PastQueries pastQueries={pastQueries} onPastQueryClick={handlePastQueryClick} />
+            </Paper>
           </Grid>
           <Grid item xs={9}>
             <SearchResults results={paginatedResults} query={debouncedQuery} loading={false} />
