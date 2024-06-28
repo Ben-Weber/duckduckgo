@@ -4,9 +4,14 @@ import path from 'path';
 const historyFilePath = path.join(__dirname, 'queryHistory.json');
 
 export const saveQuery = async (query: string) => {
-  const queries = await loadQueries();
-  queries.unshift(query);
-  await fs.writeFile(historyFilePath, JSON.stringify(queries, null, 2));
+  try {
+    const queries = await loadQueries();
+    queries.unshift(query);
+    await fs.writeFile(historyFilePath, JSON.stringify(queries, null, 2));
+  } catch (err) {
+    console.error('Error saving query:', err);
+    throw err;
+  }
 };
 
 export const loadQueries = async (): Promise<string[]> => {
