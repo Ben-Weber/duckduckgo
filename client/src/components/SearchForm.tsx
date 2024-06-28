@@ -1,11 +1,6 @@
 import React from 'react';
 import { TextField, Button, Box } from '@mui/material';
-
-interface SearchFormProps {
-  query: string;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-}
+import { SearchFormProps } from '../types/types';
 
 const SearchForm: React.FC<SearchFormProps> = ({ query, onInputChange, onSubmit }) => (
   <Box component="form" onSubmit={onSubmit} display="flex" alignItems="center" mb={2}>

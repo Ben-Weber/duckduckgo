@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-
-interface SearchState {
-  results: Array<{ title: string; description: string; url: string }>;
-  pastQueries: string[];
-}
+import { SearchState } from '../../types/types';
 
 const initialState: SearchState = {
   results: [],

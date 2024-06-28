@@ -1,12 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-
-interface PaginationProps {
-  totalResults: number;
-  resultsPerPage: number;
-  currentPage: number;
-  onPageChange: (page: number) => void;
-}
+import { PaginationProps } from '../types/types';
 
 const Pagination: React.FC<PaginationProps> = ({
   totalResults,

@@ -1,10 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Typography, Box } from '@mui/material';
-
-interface PastQueriesProps {
-  pastQueries: string[];
-  onPastQueryClick: (pastQuery: string) => void;
-}
+import { PastQueriesProps } from '../types/types';
 
 const PastQueries: React.FC<PastQueriesProps> = ({ pastQueries, onPastQueryClick }) => {
   return (

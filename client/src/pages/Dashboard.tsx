@@ -6,7 +6,7 @@ import PastQueries from '../components/PastQueries';
 import SearchResults from '../components/SearchResults';
 import Pagination from '../components/Pagination';
 import { Container, Box, Grid, Paper, Typography } from '@mui/material';
-import { TODO } from '../types/global';
+import { TODO } from '../types/types';
 import useDebounce from '../hooks/useDebounce';
 
 const Dashboard: React.FC = () => {

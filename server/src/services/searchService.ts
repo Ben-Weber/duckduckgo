@@ -1,11 +1,4 @@
-interface SearchResult {
-  url: string;
-  title: string;
-}
-
-interface DuckDuckGoResponse {
-  RelatedTopics: { FirstURL: string; Text: string }[];
-}
+import { SearchResult, DuckDuckGoResponse } from '../types/types';
 
 export async function searchDuckDuckGo(query: string): Promise<SearchResult[]> {
   const response = await fetch(
