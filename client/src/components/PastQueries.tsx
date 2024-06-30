@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { PastQueriesProps } from '../types/types';
+import { t } from 'i18next';
 
 const StyledBox = styled(Box)({
   display: 'flex',
@@ -32,7 +33,7 @@ const PastQueries: React.FC<PastQueriesProps> = ({
   return (
     <StyledBox>
       <StyledTypography variant='h6' gutterBottom={false}>
-        Past Queries
+        {t('searchResults.pastQueries')}
       </StyledTypography>
       <List sx={{ width: '100%' }}>
         {pastQueries.map((pastQuery, index) => (

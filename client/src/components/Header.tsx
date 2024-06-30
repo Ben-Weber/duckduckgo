@@ -1,15 +1,18 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { t } from 'i18next';
 
-const Header: React.FC = () => (
+const Header: React.FC = () => {
+  return (
   <Box>
     <Typography mt={6} variant='h4' align='center' gutterBottom>
-      The search engine you've been looking for
+      {t('header.title')}
     </Typography>
     <Typography variant='subtitle1' align='center'>
-      All-in-one relevance, lightning-fast setup and unprecedented control.
+      {t('header.subtitle')}
     </Typography>
   </Box>
-);
+  );
+};
 
 export default Header;

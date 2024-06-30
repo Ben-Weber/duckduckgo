@@ -4,6 +4,7 @@ import { countOccurrences, pluralize, highlightTerm } from '../utils/tools';
 import { SearchResultItemProps } from '../types/types';
 import { styled } from '@mui/material/styles';
 import { Chip } from '@mui/material';
+import { t } from 'i18next';
 
 const StyledPaper = styled(Paper)({
   padding: 16,
@@ -24,6 +25,14 @@ const StyledChip = styled(Chip)({
   marginRight: '8px',
 });
 
+const formatOccurrenceText = (occurrenceCount: number) => {
+  return `${t('searchResults.appears')} ${occurrenceCount} ${pluralize(
+    occurrenceCount,
+    t('searchResults.time'),
+    t('searchResults.times')
+  )}`;
+};
+
 const SearchResultItem: React.FC<SearchResultItemProps> = ({
   result,
   query,
@@ -32,7 +41,12 @@ const SearchResultItem: React.FC<SearchResultItemProps> = ({
   return (
     <StyledPaper elevation={2}>
       <StyledBox>
-        <Link href={result.url} underline='hover' target="_blank" rel="noopener noreferrer">
+        <Link
+          href={result.url}
+          underline='hover'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           {highlightTerm(result.title, query)}
         </Link>
       </StyledBox>
@@ -46,7 +60,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = ({
               size='small'
             />
             <Typography variant='caption'>
-              appears {occurrenceCount} {pluralize(occurrenceCount, 'time', 'times')}
+              {formatOccurrenceText(occurrenceCount)}
             </Typography>
           </>
         )}

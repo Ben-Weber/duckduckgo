@@ -1,0 +1,18 @@
+{
+  "header": {
+    "title": "Your Trusted Search Partner",
+    "subtitle": "Secure, reliable, and easy to use search engine."
+  },
+  "searchForm": {
+    "placeholder": "Search",
+    "button": "SEARCH"
+  },
+  "searchResults": {
+    "title": "Search Results",
+    "noResults": "No Search Results",
+    "pastQueries": "Past Queries",
+    "appears": "appears",
+    "time": "time",
+    "times": "times"
+  }
+}

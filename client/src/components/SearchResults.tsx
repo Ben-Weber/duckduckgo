@@ -6,6 +6,7 @@ import { ResultsBox, NoResultsBox } from './StyledComponents';
 import ResultsHeader from './ResultsHeader';
 import ResultsList from './ResultsList';
 import { SearchContainerProps } from '../types/types';
+import { t } from 'i18next';
 
 const SearchContainer: React.FC<SearchContainerProps> = ({
   results,
@@ -46,7 +47,7 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
   ) : (
     <NoResultsBox>
       <Typography color='textSecondary' style={{ opacity: 0.5 }} variant='h6'>
-        No Search Results
+        {t('searchResults.noResults')}
       </Typography>
     </NoResultsBox>
   );

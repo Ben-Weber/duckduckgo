@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { t } from 'i18next';
 
 const ResultsHeader: React.FC = () => (
   <Box
@@ -12,7 +13,7 @@ const ResultsHeader: React.FC = () => (
       borderTopRightRadius: 7,
     }}
   >
-    <Typography variant='h6'>Search Results</Typography>
+    <Typography variant='h6'>{t('searchResults.title')}</Typography>
   </Box>
 );
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Box, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchFormProps } from '../types/types';
+import { t } from 'i18next';
 
 const SearchForm: React.FC<SearchFormProps> = ({
   query,
@@ -11,7 +12,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   <Box component='form' onSubmit={onSubmit} display='flex'>
     <TextField
       id='outlined-basic'
-      label='Search'
+      label={t('searchForm.placeholder')}
       variant='outlined'
       value={query}
       onChange={onInputChange}
@@ -23,7 +24,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
       endIcon={<SearchIcon />}
       sx={{ ml: 2, px: 5 }}
     >
-      Search
+      {t('searchForm.button')}
     </Button>
   </Box>
 );
