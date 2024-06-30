@@ -44,3 +44,9 @@ export type SearchState = {
 export type SearchContainerProps = SearchResultsProps &
   PaginationProps &
   PastQueriesProps;
+
+export type ConfirmClearDialogProps ={
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Dialog,
   DialogActions,
@@ -8,14 +7,9 @@ import {
   Button,
 } from '@mui/material';
 import { t } from 'i18next';
+import { ConfirmClearDialogProps } from '../../types/types';
 
-interface ConfirmClearDialogProps {
-  open: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-}
-
-const ConfirmClearDialog: React.FC<ConfirmClearDialogProps> = ({ open, onClose, onConfirm }) => {
+const ConfirmClearDialog = ({ open, onClose, onConfirm }: ConfirmClearDialogProps) => {
   return (
     <Dialog
       open={open}
