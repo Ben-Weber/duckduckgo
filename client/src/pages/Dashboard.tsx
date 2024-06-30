@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Box } from '@mui/material';
 import SearchForm from '../components/Search/SearchForm';
 import SearchResults from '../components/Search/SearchResults';
