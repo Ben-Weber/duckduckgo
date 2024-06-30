@@ -40,6 +40,14 @@ const ListContainer = styled(Box)({
   flex: 1,
 });
 
+const StyledListItemText = styled(ListItemText)({
+  color: '#747272',
+  fontWeight: 'bold',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});
+
 const PastQueries = ({
   pastQueries,
   handlePastQueryClick,
@@ -60,12 +68,9 @@ const PastQueries = ({
           {pastQueries.map((pastQuery, index) => (
             <React.Fragment key={index}>
               <ListItemButton onClick={() => handlePastQueryClick(pastQuery)}>
-                <ListItemText
-                  primary={pastQuery}
-                  sx={{ color: '#747272', fontWeight: 'bold' }}
-                />
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <ChevronRightIcon fontSize='small' color='disabled' />
+                <StyledListItemText primary={pastQuery} />
+                <Box display="flex" alignItems="center" marginLeft="1rem">
+                  <ChevronRightIcon fontSize='small' color='disabled'/>
                 </Box>
               </ListItemButton>
               <Divider sx={{ width: '100%' }} />
