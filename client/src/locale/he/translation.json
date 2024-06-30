@@ -1,0 +1,24 @@
+{
+ "header": {
+   "title": "שותף החיפוש המהימן שלך",
+   "subtitle": "מנוע חיפוש מאובטח, אמין וקל לשימוש."
+ },
+ "searchForm": {
+   "placeholder": "חיפוש",
+   "button": "חפש"
+ },
+ "searchResults": {
+   "title": "תוצאות חיפוש",
+   "noResults": "אין תוצאות חיפוש",
+   "pastQueries": "שאילתות קודמות",
+   "appears": "מופיע",
+   "time": "פעם",
+   "times": "פעמים"
+ },
+ "confirmClearPastQueries": {
+   "title": "פעולה זו אינה ניתנת לביטול.",
+   "message1": "האם אתה בטוח שברצונך לנקות את כל השאילתות הקודמות?",
+   "cancel": "ביטול",
+   "confirm": "נקה את כל השאילתות"
+ }
+}
