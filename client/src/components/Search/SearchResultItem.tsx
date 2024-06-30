@@ -1,10 +1,10 @@
-import React from 'react';
 import { Box, Link, Paper, Skeleton, Typography } from '@mui/material';
 import { countOccurrences, pluralize, highlightTerm } from '../../utils/tools';
 import { SearchResultItemProps } from '../../types/types';
 import { styled } from '@mui/material/styles';
 import { Chip } from '@mui/material';
 import { t } from 'i18next';
+import { useAppSelector } from '../../store/store';
 
 const StyledPaper = styled(Paper)({
   padding: 16,
@@ -38,10 +38,11 @@ const SearchResultItem = ({
   query,
   isLoading,
 }: SearchResultItemProps) => {
+  const isClearHistoryLoading = useAppSelector((state) => state.search.isClearHistoryLoading);
   const occurrenceCount = countOccurrences(result.title, query);
   return (
     <StyledPaper elevation={2}>
-      {isLoading ? (
+      {isLoading || isClearHistoryLoading ? (
         <Skeleton variant='text' width='100%' />
       ) : (
         <>

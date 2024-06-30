@@ -25,6 +25,7 @@ export type PaginationProps = {
 export type PastQueriesProps = {
   pastQueries: string[];
   handlePastQueryClick: (pastQuery: string) => void;
+  handleClearQueries: () => void;
 };
 
 export type SearchFormProps = {
@@ -37,6 +38,7 @@ export type SearchState = {
   searchResults: SearchResult[];
   pastQueries: string[];
   isLoading: boolean;
+  isClearHistoryLoading: boolean;
 };
 
 export type SearchContainerProps = SearchResultsProps &

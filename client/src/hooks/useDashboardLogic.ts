@@ -4,6 +4,7 @@ import { addSearchQuery } from '../store/slices/searchSlice';
 import {
   fetchSearchResults,
   fetchPastQueries,
+  clearQueries,
 } from '../store/actions/searchActions';
 import useDebounce from './useDebounce';
 import { selectPaginatedResults } from '../store/selectors/index';
@@ -58,6 +59,10 @@ const useDashboardLogic = () => {
     [dispatch]
   );
 
+  const handleClearQueries = useCallback(() => {
+    dispatch(clearQueries());
+  }, [dispatch]);
+
   return {
     query,
     setQuery,
@@ -72,6 +77,7 @@ const useDashboardLogic = () => {
     handleInputChange,
     handleSubmit,
     handlePastQueryClick,
+    handleClearQueries,
   };
 };
 

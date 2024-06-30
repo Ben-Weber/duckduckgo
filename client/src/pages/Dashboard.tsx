@@ -19,6 +19,7 @@ const Dashboard = () => {
     handleSubmit,
     handlePastQueryClick,
     setCurrentPage,
+    handleClearQueries,
   } = useDashboardLogic();
 
   return (
@@ -41,6 +42,7 @@ const Dashboard = () => {
             isLoading={isLoading}
             onPageChange={setCurrentPage}
             handlePastQueryClick={handlePastQueryClick}
+            handleClearQueries={handleClearQueries}
           />
         </Container>
       </Box>

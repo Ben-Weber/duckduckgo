@@ -9,6 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { PastQueriesProps } from '../../types/types';
 import { t } from 'i18next';
 
@@ -42,13 +43,17 @@ const ListContainer = styled(Box)({
 const PastQueries = ({
   pastQueries,
   handlePastQueryClick,
+  handleClearQueries,
 }: PastQueriesProps) => {
   return (
     <StyledBox>
       <TitleContainer>
-        <StyledTypography variant='h6' gutterBottom={false}>
-          {t('searchResults.pastQueries')}
-        </StyledTypography>
+        <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
+          <StyledTypography variant='h6' gutterBottom={false}>
+            {t('searchResults.pastQueries')}
+          </StyledTypography>
+          <DeleteForeverIcon fontSize='small' color='error' onClick={handleClearQueries}/>
+        </Box>
       </TitleContainer>
       <ListContainer>
         <List sx={{ width: '100%' }}>

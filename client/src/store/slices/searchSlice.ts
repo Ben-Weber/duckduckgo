@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SearchState } from '../../types/types';
-import { fetchSearchResults, fetchPastQueries } from '../actions/searchActions';
+import { fetchSearchResults, fetchPastQueries, clearQueries } from '../actions/searchActions';
 
 const initialState: SearchState = {
   searchResults: [],
   pastQueries: [],
-  isLoading: false, 
+  isLoading: false,
+  isClearHistoryLoading: false,
 };
 
 const searchSlice = createSlice({
@@ -14,6 +15,9 @@ const searchSlice = createSlice({
   reducers: {
     addSearchQuery: (state, action: PayloadAction<string>) => {
       state.pastQueries.unshift(action.payload);
+    },
+    clearQueriesState: (state) => {
+      state.pastQueries = [];
     },
   },
   extraReducers: (builder) => {
@@ -37,9 +41,20 @@ const searchSlice = createSlice({
       })
       .addCase(fetchPastQueries.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(clearQueries.pending, (state) => {
+        state.isClearHistoryLoading = true;
+      })
+      .addCase(clearQueries.fulfilled, (state) => {
+        state.pastQueries = [];
+        state.searchResults = [];
+        state.isClearHistoryLoading = false;
+      })
+      .addCase(clearQueries.rejected, (state) => {
+        state.isClearHistoryLoading = false;
       });
   },
 });
 
-export const { addSearchQuery } = searchSlice.actions;
+export const { addSearchQuery, clearQueriesState } = searchSlice.actions;
 export default searchSlice.reducer;

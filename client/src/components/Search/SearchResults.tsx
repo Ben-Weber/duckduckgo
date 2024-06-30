@@ -1,11 +1,11 @@
-import React from 'react';
-import { Box, Typography, Divider } from '@mui/material';
+import { Box, Typography, Divider, Skeleton } from '@mui/material';
 import Pagination from '../Pagination/Pagination';
 import PastQueries from '../PastQueries/PastQueries';
 import { ResultsBox, NoResultsBox } from '../common/StyledComponents';
 import ResultsHeader from './ResultsHeader';
 import ResultsList from './ResultsList';
 import { SearchContainerProps } from '../../types/types';
+import { useAppSelector } from '../../store/store';
 import { t } from 'i18next';
 
 const SearchContainer = ({
@@ -18,7 +18,11 @@ const SearchContainer = ({
   pastQueries,
   onPageChange,
   handlePastQueryClick,
+  handleClearQueries,
 }: SearchContainerProps) => {
+  const isClearHistoryLoading = useAppSelector(
+    state => state.search.isClearHistoryLoading
+  );
   const hasResultsOrPastQueries = results.length > 0 || pastQueries.length > 0;
 
   if (!hasResultsOrPastQueries) {
@@ -35,16 +39,21 @@ const SearchContainer = ({
     <>
       <ResultsHeader />
       <ResultsBox>
-        <Box width={'25%'}>
-          <PastQueries
-            pastQueries={pastQueries}
-            handlePastQueryClick={handlePastQueryClick}
-          />
-        </Box>
+        {isClearHistoryLoading ? (
+          <Skeleton variant='rounded' height='100%' width='100%' />
+        ) : (
+          <Box width={'25%'} minHeight={200}>
+            <PastQueries
+              pastQueries={pastQueries}
+              handlePastQueryClick={handlePastQueryClick}
+              handleClearQueries={handleClearQueries}
+            />
+          </Box>
+        )}
         <Divider orientation='vertical' flexItem />
-        <Box mt={3} flex={1}>
+        <Box mt={3} flex={1} sx={{ transition: 'height 0.3s ease' }}>
           <ResultsList results={results} query={query} isLoading={isLoading} />
-          <Box height='calc(100% - 60px)'>
+          <Box  sx={{ transition: 'height 0.3s ease' }}>
             <Pagination
               totalResults={totalResults}
               resultsPerPage={resultsPerPage}

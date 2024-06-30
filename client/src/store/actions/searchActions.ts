@@ -33,3 +33,19 @@ export const fetchPastQueries = createAsyncThunk(
     }
   }
 );
+
+export const clearQueries = createAsyncThunk(
+  'history/clearQueries',
+  async () => {
+    try {
+      const response = await fetch('/api/history/clear', { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    } catch (error) {
+      console.error('Error clearing queries:', error);
+      throw error;
+    }
+  }
+);
