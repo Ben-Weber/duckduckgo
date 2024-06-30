@@ -21,7 +21,7 @@ export const highlightTerm = (text: string, term: string) => {
     <span>
       {parts.map((part, i) =>
         part.toLowerCase() === term.toLowerCase() ? (
-          <span key={i} style={{ backgroundColor: 'yellow' }}>
+          <span key={i} style={{ backgroundColor: 'yellow', textTransform: 'capitalize' }}>
             {part}
           </span>
         ) : (

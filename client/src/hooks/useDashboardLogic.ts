@@ -12,6 +12,7 @@ const useDashboardLogic = () => {
   const dispatch = useAppDispatch();
   const searchResults = useAppSelector(state => state.search.searchResults);
   const pastQueries = useAppSelector(state => state.search.pastQueries);
+  const isLoading = useAppSelector(state => state.search.isLoading);
 
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,6 +68,7 @@ const useDashboardLogic = () => {
     debouncedQuery,
     searchResults,
     pastQueries,
+    isLoading,
     handleInputChange,
     handleSubmit,
     handlePastQueryClick,

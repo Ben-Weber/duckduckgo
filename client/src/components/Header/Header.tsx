@@ -1,8 +1,7 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { t } from 'i18next';
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
   <Box>
     <Typography mt={6} variant='h4' align='center' gutterBottom>

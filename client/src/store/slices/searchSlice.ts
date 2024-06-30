@@ -5,6 +5,7 @@ import { fetchSearchResults, fetchPastQueries } from '../actions/searchActions';
 const initialState: SearchState = {
   searchResults: [],
   pastQueries: [],
+  isLoading: false, 
 };
 
 const searchSlice = createSlice({
@@ -16,12 +17,27 @@ const searchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
-      state.searchResults = action.payload;
-    });
-    builder.addCase(fetchPastQueries.fulfilled, (state, action) => {
-      state.pastQueries = action.payload;
-    });
+    builder
+      .addCase(fetchSearchResults.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSearchResults.fulfilled, (state, action) => {
+        state.searchResults = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchSearchResults.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(fetchPastQueries.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchPastQueries.fulfilled, (state, action) => {
+        state.pastQueries = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchPastQueries.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 

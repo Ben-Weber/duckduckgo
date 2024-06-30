@@ -6,12 +6,13 @@ export type SearchResult = {
 export type SearchResultItemProps = {
   result: SearchResult;
   query: string;
+  isLoading: boolean;
 };
 
 export type SearchResultsProps = {
   results: SearchResult[];
   query: string;
-  loading: boolean;
+  isLoading: boolean;
 };
 
 export type PaginationProps = {
@@ -35,6 +36,7 @@ export type SearchFormProps = {
 export type SearchState = {
   searchResults: SearchResult[];
   pastQueries: string[];
+  isLoading: boolean;
 };
 
 export type SearchContainerProps = SearchResultsProps &

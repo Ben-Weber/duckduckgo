@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Box, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { SearchFormProps } from '../types/types';
+import { SearchFormProps } from '../../types/types';
 import { t } from 'i18next';
 
-const SearchForm: React.FC<SearchFormProps> = ({
+const SearchForm = ({
   query,
   onInputChange,
   onSubmit,
-}) => (
+}: SearchFormProps) => (
   <Box component='form' onSubmit={onSubmit} display='flex'>
     <TextField
       id='outlined-basic'

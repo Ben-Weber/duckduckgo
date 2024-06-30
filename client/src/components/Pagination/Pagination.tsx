@@ -1,13 +1,12 @@
-import React from 'react';
 import { Box, Button } from '@mui/material';
-import { PaginationProps } from '../types/types';
+import { PaginationProps } from '../../types/types';
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = ({
   totalResults,
   resultsPerPage,
   currentPage,
   onPageChange,
-}) => {
+}: PaginationProps) => {
   const totalPages = Math.ceil(totalResults / resultsPerPage);
 
   return (

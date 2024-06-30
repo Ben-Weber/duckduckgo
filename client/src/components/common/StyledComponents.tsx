@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export const ResultsBox: React.FC<{
+export const ResultsBox = ({
+  children,
+}: {
   children: React.ReactNode;
-  center?: string;
-}> = ({ children }) => (
+}) => (
   <Box
     display='flex'
     justifyContent={'center'}
@@ -21,9 +22,9 @@ export const ResultsBox: React.FC<{
   </Box>
 );
 
-export const NoResultsBox: React.FC<{ children: React.ReactNode }> = ({
+export const NoResultsBox = ({
   children,
-}) => (
+}: { children: React.ReactNode }) => (
   <Box
     display='flex'
     justifyContent={'center'}

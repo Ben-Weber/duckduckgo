@@ -9,7 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { PastQueriesProps } from '../types/types';
+import { PastQueriesProps } from '../../types/types';
 import { t } from 'i18next';
 
 const StyledBox = styled(Box)({
@@ -39,10 +39,10 @@ const ListContainer = styled(Box)({
   flex: 1,
 });
 
-const PastQueries: React.FC<PastQueriesProps> = ({
+const PastQueries = ({
   pastQueries,
   handlePastQueryClick,
-}) => {
+}: PastQueriesProps) => {
   return (
     <StyledBox>
       <TitleContainer>

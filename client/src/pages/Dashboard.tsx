@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Box } from '@mui/material';
-import SearchForm from '../components/SearchForm';
-import SearchResults from '../components/SearchResults';
+import SearchForm from '../components/Search/SearchForm';
+import SearchResults from '../components/Search/SearchResults';
 import useDashboardLogic from '../hooks/useDashboardLogic';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const {
     query,
     currentPage,
@@ -14,6 +14,7 @@ const Dashboard: React.FC = () => {
     debouncedQuery,
     searchResults,
     pastQueries,
+    isLoading,
     handleInputChange,
     handleSubmit,
     handlePastQueryClick,
@@ -33,11 +34,11 @@ const Dashboard: React.FC = () => {
           <SearchResults
             results={paginatedResults}
             query={debouncedQuery}
-            loading={false}
             totalResults={searchResults.length}
             resultsPerPage={resultsPerPage}
             currentPage={currentPage}
             pastQueries={pastQueries}
+            isLoading={isLoading}
             onPageChange={setCurrentPage}
             handlePastQueryClick={handlePastQueryClick}
           />

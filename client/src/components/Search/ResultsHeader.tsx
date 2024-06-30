@@ -1,8 +1,7 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { t } from 'i18next';
 
-const ResultsHeader: React.FC = () => (
+const ResultsHeader = () => (
   <Box
     sx={{
      background: 'linear-gradient(to right, #1876D1, #8d72c4, #f8e082)',
