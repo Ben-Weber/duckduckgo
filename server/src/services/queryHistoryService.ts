@@ -24,3 +24,12 @@ export const loadQueries = async (): Promise<string[]> => {
     throw err;
   }
 };
+
+export const clearQueries = async () => {
+  try {
+    await fs.writeFile(historyFilePath, JSON.stringify([]));
+  } catch (err) {
+    console.error('Error clearing query history:', err);
+    throw err;
+  }
+};
