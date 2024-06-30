@@ -18,12 +18,25 @@ const StyledBox = styled(Box)({
   alignItems: 'flex-start',
   height: '100%',
   position: 'relative',
-  overflow: 'scroll',
+});
+
+const TitleContainer = styled(Box)({
+  position: 'sticky',
+  top: 0,
+  backgroundColor: '#e9eaeb',
+  zIndex: 1,
+  width: '100%',
+  padding: '16px 0',
 });
 
 const StyledTypography = styled(Typography)({
   marginLeft: 16,
-  marginTop: 16,
+});
+
+const ListContainer = styled(Box)({
+  overflowY: 'auto',
+  width: '100%',
+  flex: 1,
 });
 
 const PastQueries: React.FC<PastQueriesProps> = ({
@@ -32,25 +45,29 @@ const PastQueries: React.FC<PastQueriesProps> = ({
 }) => {
   return (
     <StyledBox>
-      <StyledTypography variant='h6' gutterBottom={false}>
-        {t('searchResults.pastQueries')}
-      </StyledTypography>
-      <List sx={{ width: '100%' }}>
-        {pastQueries.map((pastQuery, index) => (
-          <React.Fragment key={index}>
-            <ListItemButton onClick={() => handlePastQueryClick(pastQuery)}>
-              <ListItemText
-                primary={pastQuery}
-                sx={{ color: '#747272', fontWeight: 'bold' }}
-              />
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <ChevronRightIcon fontSize='small' color='disabled' />
-              </Box>
-            </ListItemButton>
-            <Divider sx={{ width: '100%' }} />
-          </React.Fragment>
-        ))}
-      </List>
+      <TitleContainer>
+        <StyledTypography variant='h6' gutterBottom={false}>
+          {t('searchResults.pastQueries')}
+        </StyledTypography>
+      </TitleContainer>
+      <ListContainer>
+        <List sx={{ width: '100%' }}>
+          {pastQueries.map((pastQuery, index) => (
+            <React.Fragment key={index}>
+              <ListItemButton onClick={() => handlePastQueryClick(pastQuery)}>
+                <ListItemText
+                  primary={pastQuery}
+                  sx={{ color: '#747272', fontWeight: 'bold' }}
+                />
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <ChevronRightIcon fontSize='small' color='disabled' />
+                </Box>
+              </ListItemButton>
+              <Divider sx={{ width: '100%' }} />
+            </React.Fragment>
+          ))}
+        </List>
+      </ListContainer>
     </StyledBox>
   );
 };
