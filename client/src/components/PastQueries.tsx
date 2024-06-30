@@ -1,19 +1,56 @@
 import React from 'react';
-import { List, ListItemButton, ListItemText, Typography, Box } from '@mui/material';
+import {
+  Box,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography,
+  Divider,
+  styled,
+} from '@mui/material';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { PastQueriesProps } from '../types/types';
 
-const PastQueries: React.FC<PastQueriesProps> = ({ pastQueries, onPastQueryClick }) => {
+const StyledBox = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  height: '100%',
+  position: 'relative',
+  overflow: 'scroll',
+});
+
+const StyledTypography = styled(Typography)({
+  marginLeft: 16,
+  marginTop: 16,
+});
+
+const PastQueries: React.FC<PastQueriesProps> = ({
+  pastQueries,
+  handlePastQueryClick,
+}) => {
   return (
-    <Box mb={2}>
-      <Typography variant="h6">Past Queries</Typography>
-        <List>
-          {pastQueries.map((pastQuery, index) => (
-            <ListItemButton key={index} onClick={() => onPastQueryClick(pastQuery)}>
-              <ListItemText primary={pastQuery} />
+    <StyledBox>
+      <StyledTypography variant='h6' gutterBottom={false}>
+        Past Queries
+      </StyledTypography>
+      <List sx={{ width: '100%' }}>
+        {pastQueries.map((pastQuery, index) => (
+          <React.Fragment key={index}>
+            <ListItemButton onClick={() => handlePastQueryClick(pastQuery)}>
+              <ListItemText
+                primary={pastQuery}
+                sx={{ color: '#747272', fontWeight: 'bold' }}
+              />
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <ChevronRightIcon fontSize='small' color='disabled' />
+              </Box>
             </ListItemButton>
-          ))}
-        </List>
-    </Box>
+            <Divider sx={{ width: '100%' }} />
+          </React.Fragment>
+        ))}
+      </List>
+    </StyledBox>
   );
 };
 

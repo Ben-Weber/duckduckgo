@@ -1,41 +1,56 @@
 import React from 'react';
-import { Link, Paper, Typography } from '@mui/material';
-import { countOccurrences, escapeRegExp } from '../utils/tools';
+import { Box, Link, Paper, Typography } from '@mui/material';
+import { countOccurrences, pluralize, highlightTerm } from '../utils/tools';
 import { SearchResultItemProps } from '../types/types';
 import { styled } from '@mui/material/styles';
+import { Chip } from '@mui/material';
 
 const StyledPaper = styled(Paper)({
   padding: 16,
   marginBottom: 16,
+  marginLeft: 12,
+  marginRight: 12,
 });
 
-const highlightTerm = (text: string, term: string) => {
-  if (!term || !text) return text;
-  const escapedTerm = escapeRegExp(term);
-  const parts = text.split(new RegExp(`(${escapedTerm})`, 'gi'));
-  return (
-    <span>
-      {parts.map((part, i) =>
-        part.toLowerCase() === term.toLowerCase() ? (
-          <span key={i} style={{ backgroundColor: 'yellow' }}>{part}</span>
-        ) : (
-          part
-        )
-      )}
-    </span>
-  );
-};
+const StyledBox = styled(Box)({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  maxWidth: '580px',
+});
 
-const SearchResultItem: React.FC<SearchResultItemProps> = ({ result, query }) => {
+const StyledChip = styled(Chip)({
+  borderRadius: '5px',
+  marginRight: '8px',
+});
+
+const SearchResultItem: React.FC<SearchResultItemProps> = ({
+  result,
+  query,
+}) => {
   const occurrenceCount = countOccurrences(result.title, query);
   return (
     <StyledPaper elevation={2}>
-      <Link href={result.url} variant="h6" underline="hover">
-        {highlightTerm(result.title, query)}
-      </Link>
-      {occurrenceCount > 0 && (
-        <Typography variant="caption">{`"${query}" appears ${occurrenceCount} times`}</Typography>
-      )}
+      <StyledBox>
+        <Link href={result.url} underline='hover' target="_blank" rel="noopener noreferrer">
+          {highlightTerm(result.title, query)}
+        </Link>
+      </StyledBox>
+      <Box mt={1}>
+        {occurrenceCount > 0 && (
+          <>
+            <StyledChip
+              variant='outlined'
+              label={query}
+              color='success'
+              size='small'
+            />
+            <Typography variant='caption'>
+              appears {occurrenceCount} {pluralize(occurrenceCount, 'time', 'times')}
+            </Typography>
+          </>
+        )}
+      </Box>
     </StyledPaper>
   );
 };
