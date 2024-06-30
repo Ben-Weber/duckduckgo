@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   List,
@@ -12,6 +12,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { PastQueriesProps } from '../../types/types';
 import { t } from 'i18next';
+import ConfirmClearDialog from './ConfirmClearDialog';
 
 const StyledBox = styled(Box)({
   display: 'flex',
@@ -53,6 +54,17 @@ const PastQueries = ({
   handlePastQueryClick,
   handleClearQueries,
 }: PastQueriesProps) => {
+  const [open, setOpen] = useState(false);
+
+  const toggleDialog = () => {
+    setOpen(prev => !prev);
+  };
+
+  const handleConfirmClear = () => {
+    handleClearQueries();
+    toggleDialog();
+  };
+
   return (
     <StyledBox>
       <TitleContainer>
@@ -60,7 +72,7 @@ const PastQueries = ({
           <StyledTypography variant='h6' gutterBottom={false}>
             {t('searchResults.pastQueries')}
           </StyledTypography>
-          <DeleteForeverIcon fontSize='small' color='error' onClick={handleClearQueries}/>
+          <DeleteForeverIcon fontSize='small' color='error' onClick={toggleDialog}/>
         </Box>
       </TitleContainer>
       <ListContainer>
@@ -78,6 +90,11 @@ const PastQueries = ({
           ))}
         </List>
       </ListContainer>
+      <ConfirmClearDialog
+        open={open}
+        onClose={toggleDialog}
+        onConfirm={handleConfirmClear}
+      />
     </StyledBox>
   );
 };

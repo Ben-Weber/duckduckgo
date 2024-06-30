@@ -14,5 +14,11 @@
     "appears": "appears",
     "time": "time",
     "times": "times"
+  },
+  "confirmClearPastQueries": {
+    "title": "This action cannot be undone.",
+    "message1": "Are you sure you want to clear all past queries?",
+    "cancel": "Cancel",
+    "confirm": "Clear All Queries"
   }
 }
