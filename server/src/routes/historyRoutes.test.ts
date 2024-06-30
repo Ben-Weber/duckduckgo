@@ -1,7 +1,7 @@
 import request from 'supertest';
 import express from 'express';
 import historyRoutes from './historyRoutes';
-import { loadQueries } from '../services/queryHistoryService';
+import { loadQueries, clearQueries } from '../services/queryHistoryService';
 
 jest.mock('../services/queryHistoryService');
 
@@ -32,5 +32,24 @@ describe('History Routes', () => {
     const response = await request(app).post('/api/history');
     expect(response.status).toBe(500);
     expect(response.body).toEqual({ error: 'Failed to load query history' });
+  });
+
+  it('should clear query history', async () => {
+    (clearQueries as jest.Mock).mockResolvedValue(undefined);
+
+    const response = await request(app).delete('/api/history/clear');
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ message: 'Query history cleared successfully' });
+    expect(clearQueries).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle errors from clearQueries', async () => {
+    (clearQueries as jest.Mock).mockRejectedValue(
+      new Error('Failed to clear query history')
+    );
+
+    const response = await request(app).delete('/api/history/clear');
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual({ error: 'Failed to clear query history' });
   });
 });
