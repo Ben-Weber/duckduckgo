@@ -3,7 +3,7 @@ import { t } from 'i18next';
 
 const Header = () => {
   return (
-  <Box>
+  <Box marginBottom={10}>
     <Typography mt={6} variant='h4' align='center' gutterBottom>
       {t('header.title')}
     </Typography>

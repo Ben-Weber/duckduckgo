@@ -1,10 +1,10 @@
 import { Box, Link, Paper, Skeleton, Typography } from '@mui/material';
-import { countOccurrences, pluralize, highlightTerm } from '../../utils/tools';
-import { SearchResultItemProps } from '../../types/types';
 import { styled } from '@mui/material/styles';
 import { Chip } from '@mui/material';
 import { t } from 'i18next';
 import { useAppSelector } from '../../store/store';
+import { SearchResultItemProps } from '../../types/types';
+import { countOccurrences, pluralize, highlightTerm } from '../../utils/tools';
 
 const StyledPaper = styled(Paper)({
   padding: 16,

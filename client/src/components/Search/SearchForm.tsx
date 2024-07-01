@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Box, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchFormProps } from '../../types/types';

@@ -1,12 +1,11 @@
 import { MouseEvent, useCallback } from 'react';
-import { Container, Box, } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import useDashboardLogic from '../hooks/useDashboardLogic';
 import SearchForm from '../components/Search/SearchForm';
 import SearchResults from '../components/Search/SearchResults';
-import useDashboardLogic from '../hooks/useDashboardLogic';
 import Header from '../components/Header/Header';
 import LanguageToggle from '../components/LanguageToggle/LanguageToggle';
-
 
 const Dashboard = () => {
   const {
@@ -26,17 +25,20 @@ const Dashboard = () => {
   } = useDashboardLogic();
   const { i18n } = useTranslation();
 
-    const handleLanguageChange = useCallback((event: MouseEvent<HTMLElement>, newLang: string) => {
+  const handleLanguageChange = useCallback(
+    (event: MouseEvent<HTMLElement>, newLang: string) => {
       if (newLang !== null) {
         i18n.changeLanguage(newLang);
       }
-    }, [i18n]);
-  
+    },
+    [i18n]
+  );
+
   return (
     <Container maxWidth='lg'>
-        <LanguageToggle handleLanguageChange={handleLanguageChange} />
+      <LanguageToggle handleLanguageChange={handleLanguageChange} />
       <Header />
-      <Box pt={6} width='100%' margin='0 auto'>
+      <Box>
         <Container maxWidth='lg'>
           <SearchForm
             query={query}

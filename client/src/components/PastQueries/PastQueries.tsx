@@ -10,9 +10,9 @@ import {
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { PastQueriesProps } from '../../types/types';
 import { t } from 'i18next';
 import ConfirmClearDialog from './ConfirmClearDialog';
+import { PastQueriesProps } from '../../types/types';
 
 const StyledBox = styled(Box)({
   display: 'flex',
@@ -39,6 +39,7 @@ const ListContainer = styled(Box)({
   overflowY: 'auto',
   width: '100%',
   flex: 1,
+  display: 'flex',
 });
 
 const StyledListItemText = styled(ListItemText)({

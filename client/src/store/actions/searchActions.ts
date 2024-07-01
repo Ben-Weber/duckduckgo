@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { SearchResult } from '../../types/types';
 
 export const fetchSearchResults = createAsyncThunk(
   'search/fetchSearchResults',
   async (query: string) => {
     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-    const data = await response.json();
-    const results = data.map((item: any) => ({
+    const data: SearchResult[] = await response.json();
+    const results = data.map((item: SearchResult) => ({
       title: item.title,
       url: item.url,
     }));

@@ -4,7 +4,7 @@ import { SearchResultsProps } from '../../types/types';
 
 const ResultsList = ({ results, query, isLoading }: SearchResultsProps) => {
   return (
-    <List>
+    <List sx={{ height: '90%' }}>
       {results.map((result, index) => (
         <SearchResultItem key={index} result={result} query={query} isLoading={isLoading} />
       ))}

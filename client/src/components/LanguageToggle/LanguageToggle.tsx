@@ -14,7 +14,7 @@ const LanguageToggle = ({
   const { i18n } = useTranslation();
 
   return (
-    <Box display='flex' justifyContent='flex-end'>
+    <Box display='flex' justifyContent='flex-end' marginTop={2}>
       <ToggleButtonGroup
         value={i18n.language}
         exclusive
