@@ -20,5 +20,9 @@
     "message1": "Are you sure you want to clear all past queries?",
     "cancel": "Cancel",
     "confirm": "Clear All Queries"
+  },
+  "language": {
+    "english": "EN",
+    "hebrew": "HE"
   }
 }
