@@ -36,7 +36,7 @@ const Dashboard = () => {
     <Container maxWidth='lg'>
         <LanguageToggle handleLanguageChange={handleLanguageChange} />
       <Header />
-      <Box pt={6} width={900} margin='0 auto'>
+      <Box pt={6} width='100%' margin='0 auto'>
         <Container maxWidth='lg'>
           <SearchForm
             query={query}

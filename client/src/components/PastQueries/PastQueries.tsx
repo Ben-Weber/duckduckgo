@@ -72,7 +72,7 @@ const PastQueries = ({
           <StyledTypography variant='h6' gutterBottom={false}>
             {t('searchResults.pastQueries')}
           </StyledTypography>
-          <DeleteForeverIcon fontSize='small' color='error' onClick={toggleDialog}/>
+          <DeleteForeverIcon fontSize='small' color='error' onClick={toggleDialog} sx={{ mr: 1 }}/>
         </Box>
       </TitleContainer>
       <ListContainer>
