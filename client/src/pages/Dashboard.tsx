@@ -1,11 +1,10 @@
-
 import { MouseEvent, useCallback } from 'react';
 import { Container, Box, } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import SearchForm from '../components/Search/SearchForm';
 import SearchResults from '../components/Search/SearchResults';
 import useDashboardLogic from '../hooks/useDashboardLogic';
 import Header from '../components/Header/Header';
-import { useTranslation } from 'react-i18next';
 import LanguageToggle from '../components/LanguageToggle/LanguageToggle';
 
 
